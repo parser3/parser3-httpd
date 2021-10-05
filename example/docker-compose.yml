@@ -10,7 +10,6 @@ services:
       - 80:9000
     volumes:
       - .:/app
-    working_dir: /app/www
     user: root
     links:
       - database
