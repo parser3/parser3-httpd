@@ -9,12 +9,15 @@ RUN apk update && apk add --no-cache --virtual .builddeps tar bison gcc g++ linu
 	&& cvs -d :pserver:anonymous@cvs.parser.ru:/parser3project get -r release_3_4_6 parser3 \
 	&& cvs -d :pserver:anonymous@cvs.parser.ru:/parser3project get sql \
 	&& cd /src/parser3 && ./buildall --strip --disable-safe-mode \
-	&& cd /src/sql/mysql && ./configure --prefix=/usr/local/parser3 && make && make install \
+	&& cd /src/sql/mysql && ./configure --prefix=/root/parser3install/bin && make && make install \
+	&& mv /root/parser3install/bin /usr/local/parser3 \
 	&& apk del .builddeps && cd / && rm -rf /src/ && rm -f /tmp/* \
 	&& mkdir -p /app/{cgi,www} 2>/dev/null
 
 RUN apk add --no-cache mariadb-connector-c-dev libcurl libstdc++ libgcc \
 	&& rm -rf /tmp/* && ln -s "$(ls -1 /usr/lib/libcurl.so.* | head -1 | xargs basename)" /usr/lib/libcurl.so
+
+COPY index.html /app/www/index.html
 
 ENV CGI_PARSER_LOG=/app/cgi/parser.log
 

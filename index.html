@@ -1,0 +1,42 @@
+###############################################################################
+@auto[]
+$self.now[^date::now[]]
+#end @auto[]
+
+
+###############################################################################
+@main[][locals]
+$result[
+	<!DOCTYPE html>
+	<html lang="ru">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Parser3 HTTPD</title>
+	</head>
+	<body>
+		<h1>Hello, World!</h1>
+		<hr />
+
+		<h3>Parser3</h3>
+		<p>Parser $env:PARSER_VERSION</p>
+		<p>Server Date/Time: ^self.now.sql-string[]</p>
+		<hr />
+
+		<h3>Env</h3>
+		^env:fields.foreach[field;value]{
+			<p>${field}=${value}</p>
+		}
+		<hr />
+
+		<h3>Links</h3>
+		<p><a href="https://parser.ru">parser.ru</a></p>
+		<p><a href="https://artlebedev.ru">artlebedev.ru</a></p>
+		<hr />
+
+		<p>&copy^; Art. Lebedev Studio, ${self.now.year}</p>
+	</body>
+	</html>
+]
+#end @main[]
