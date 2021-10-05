@@ -1,0 +1,30 @@
+###############################################################################
+# $ID: index.html, 05 Oct 2021 12:12, Leonid 'n3o' Knyazev $
+###############################################################################
+###############################################################################
+@main[][locals]
+$result[
+	<h3>Parser3</h3>
+	<p>Parser $env:PARSER_VERSION</p>
+	<p>Server date/time: ^self.now.sql-string[]</p>
+
+	<hr />
+
+	<h3>Database</h5>
+	^connect[$MAIN:SQL.connect-string]{
+		<p>Ver: ^string:sql{SELECT VERSION()}[ $.default[] ]</p>
+
+		$vars[^table::sql{SHOW VARIABLES LIKE '%version%'}]
+		^vars.menu{
+			<p>${vars.Variable_name} - ${vars.Value}</p>
+		}
+	}
+
+	<hr/>
+	<p>&copy^; Art. Lebedev Studio, 2021</p>
+
+	^if(^form:debug.bool(false)){
+		^dstop[$self]
+	}
+]
+#end @main[]

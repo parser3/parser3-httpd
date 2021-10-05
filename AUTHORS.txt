@@ -1,0 +1,10 @@
+# This is the official list of Parser3 HTTPD Application Server authors for copyright purposes.
+
+# Names should be added to this file as:
+#   Name or Organization <email address>
+# The email address is not required to avoid spam.
+
+# Please keep the list sorted alphabetically.
+
+
+Leonid Knyazev <n3o@design.ru, leonid@knyazev.me>

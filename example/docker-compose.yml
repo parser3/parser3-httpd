@@ -1,0 +1,36 @@
+version: "3.5"
+
+services:
+  parser:
+    image: parser/parser3-httpd:latest
+    container_name: parser3-httpd
+    networks:
+      - default
+    ports:
+      - 80:9000
+    volumes:
+      - .:/app
+    working_dir: /app/www
+    user: root
+    links:
+      - database
+
+  database:
+    image: mysql:latest
+    container_name: parser3-httpd.mysql
+    networks:
+      - default
+    volumes:
+      - db_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: parser3
+      MYSQL_USER: parser3
+      MYSQL_PASSWORD: parser3
+
+volumes:
+  db_data: {}
+
+networks:
+  default:
+    name: parser3-httpd
