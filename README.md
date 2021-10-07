@@ -27,7 +27,8 @@ $ docker run -w /path/to/dir parser/parser3-httpd
 ```
 
 ## Environment variables
-### `CGI_PARSER_LOG=/app/cgi/parser.log`
+
+`CGI_PARSER_LOG=/app/cgi/parser.log`
 
 ## Parser config and `httpd.p`
 Parser use `/usr/local/parser3/auto.p` with default configuration and include base `httpd` class. You can place `httpd.p` in you `$request:document-root` with your implementation.
