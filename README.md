@@ -10,6 +10,12 @@ $ docker run -p 8080:9000 parser/parser3-httpd
 
 ...where `-p 8080:9000` is a `{host}:{container}` port mapping. See the Docker Container networking [documentation](https://docs.docker.com/config/containers/container-networking/).
 
+```console
+$ docker run -p 8080:9000 --mount type=bind,source=/path/to/your/site,target=/app parser/parser3-httpd
+```
+
+...where `/path/to/your/site` is directory containing the site/application you want to run.
+
 ## Default structure in the container
 ### `/app`
 Application directory.
@@ -37,4 +43,6 @@ See [documentation](https://www.parser.ru/en/docs/lang/?parserwebserver.htm).
 ## Links
 [Parser](https://www.parser.ru/en/) — official website.
 
-[Documentations](https://www.parser.ru/en/docs/) — Parser3 documentations.
+[Documentation](https://www.parser.ru/en/docs/) — Parser3 documentation.
+
+[Docker Hub](https://hub.docker.com/r/parser/parser3-httpd) — Docker Hub repository.
