@@ -17,6 +17,8 @@ RUN apk update && apk add --no-cache --virtual .builddeps tar bison gcc g++ linu
 RUN apk add --no-cache mariadb-connector-c-dev libcurl libstdc++ libgcc \
 	&& rm -rf /tmp/* && ln -s "$(ls -1 /usr/lib/libcurl.so.* | head -1 | xargs basename)" /usr/lib/libcurl.so
 
+RUN apk add --no-cache tzdata && cp /usr/share/zoneinfo/Europe/Moscow /etc/localtime && echo "Europe/Moscow" >  /etc/timezone
+
 COPY templates/auto.p /usr/local/parser3/auto.p
 COPY templates/index.html /app/www/index.html
 
