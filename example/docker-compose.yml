@@ -1,5 +1,7 @@
 version: "3.5"
 
+name: parser3-httpd
+
 services:
   parser:
     image: parser/parser3-httpd:latest
@@ -11,7 +13,7 @@ services:
     volumes:
       - .:/app
     user: root
-    links:
+    depends_on:
       - database
 
   database:
@@ -28,7 +30,7 @@ services:
       MYSQL_PASSWORD: parser3
 
 volumes:
-  db_data: {}
+  db_data:
 
 networks:
   default:
