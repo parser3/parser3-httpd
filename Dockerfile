@@ -6,7 +6,7 @@ FROM alpine:latest
 RUN apk update && apk add --no-cache --virtual .builddeps tar bison gcc g++ linux-headers make mariadb-dev tzdata cvs\
 	&& mkdir -p /src/sql 2>/dev/null && cd /src \
 	&& echo -ne "\n" | cvs -d :pserver:anonymous@cvs.parser.ru:/parser3project login \
-	&& cvs -d :pserver:anonymous@cvs.parser.ru:/parser3project get -r release_3_4_6 parser3 \
+	&& cvs -d :pserver:anonymous@cvs.parser.ru:/parser3project get -r release_3_5_0 parser3 \
 	&& cvs -d :pserver:anonymous@cvs.parser.ru:/parser3project get sql \
 	&& cd /src/parser3 && ./buildall --strip --disable-safe-mode \
 	&& cd /src/sql/mysql && ./configure --prefix=/root/parser3install/bin && make && make install \
